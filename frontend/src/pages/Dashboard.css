@@ -1,0 +1,107 @@
+.dashboard-root {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Stats Bar ─── */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  padding: 16px 24px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+  cursor: default;
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
+
+.stat-card-icon { font-size: 22px; flex-shrink: 0; }
+.stat-card-value {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+.stat-card-label { font-size: 11px; color: var(--text-muted); margin-top: 3px; font-weight: 500; }
+
+.stat-blue  .stat-card-value { color: var(--accent-blue); }
+.stat-green .stat-card-value { color: var(--accent-green); }
+.stat-orange .stat-card-value { color: var(--accent-orange); }
+.stat-red   .stat-card-value { color: var(--accent-red); }
+.stat-purple .stat-card-value { color: var(--accent-purple); }
+
+/* ─── Tab Nav ─── */
+.tab-nav {
+  display: flex;
+  gap: 4px;
+  padding: 12px 24px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.tab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 16px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 140px;
+}
+.tab-btn:hover {
+  background: var(--bg-glass);
+  border-color: var(--border);
+}
+.tab-btn.active {
+  background: rgba(14,165,233,0.1);
+  border-color: rgba(14,165,233,0.4);
+  box-shadow: 0 0 0 1px rgba(14,165,233,0.1) inset;
+}
+
+.tab-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.tab-btn.active .tab-label { color: var(--accent-blue); }
+
+.tab-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ─── Tab Content ─── */
+.tab-content {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1200px) {
+  .stats-bar { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .stats-bar { grid-template-columns: repeat(2, 1fr); padding: 12px; gap: 8px; }
+  .tab-nav { overflow-x: auto; gap: 4px; padding: 8px 12px; }
+  .tab-btn { min-width: 110px; padding: 8px 12px; }
+  .tab-desc { display: none; }
+}

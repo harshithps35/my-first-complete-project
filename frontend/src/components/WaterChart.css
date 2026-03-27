@@ -1,0 +1,128 @@
+/* ─── Root ─── */
+.chart-root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.chart-header { display: flex; flex-direction: column; gap: 4px; }
+
+/* ─── Grid ───
+   Row 1: Trend chart (full width)
+   Row 2: Bar chart | TDS chart | Summary (sidebar spanning row 2)
+*/
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 320px;
+  grid-template-rows: auto auto;
+  gap: 14px;
+}
+
+.chart-wide    { grid-column: 1 / 4; grid-row: 1; }
+.chart-summary { grid-column: 3 / 4; grid-row: 2; }
+
+/* ─── Cards ─── */
+.chart-card {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chart-card-title    { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+.chart-card-subtitle { font-size: 11.5px; color: var(--text-muted); margin-bottom: 2px; }
+
+/* ─── Canvas wrappers ─── */
+.chart-canvas-wrap {
+  position: relative;
+  width: 100%;
+  /* Height drives the chart — maintainAspectRatio must be false in JS */
+}
+
+/* Trend line chart: a bit taller so lines have room */
+.chart-wide .chart-canvas-wrap  { height: 260px; }
+
+/* Bar charts: equal height in their row */
+.chart-card:not(.chart-wide):not(.chart-summary) .chart-canvas-wrap { height: 220px; }
+
+/* ─── Legend & notes ─── */
+.chart-legend-row { display: flex; gap: 14px; flex-wrap: wrap; }
+.chart-legend-item { font-size: 11.5px; }
+
+.tds-note {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+/* ─── Summary Metrics ─── */
+.summary-metrics { display: flex; flex-direction: column; gap: 7px; flex: 1; }
+
+.summary-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+.summary-row:hover { background: rgba(255,255,255,0.04); transform: translateX(3px); }
+
+.summary-critical { border-left: 3px solid #ef4444 !important; }
+.summary-warning  { border-left: 3px solid #f59e0b !important; }
+.summary-good     { border-left: 3px solid #10b981 !important; }
+
+.summary-area { font-size: 12px; font-weight: 600; color: var(--text-primary); min-width: 88px; }
+
+.summary-bar-wrap { display: flex; align-items: center; gap: 8px; flex: 1; }
+
+.summary-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.summary-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s ease;
+}
+
+.summary-level {
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 38px;
+  text-align: right;
+  font-family: var(--font-display);
+  color: var(--text-secondary);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1100px) {
+  .chart-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .chart-wide    { grid-column: 1 / 3; grid-row: 1; }
+  .chart-summary { grid-column: 2 / 3; grid-row: 2 / 4; }
+  .chart-wide .chart-canvas-wrap  { height: 220px; }
+  .chart-card:not(.chart-wide):not(.chart-summary) .chart-canvas-wrap { height: 200px; }
+}
+
+@media (max-width: 700px) {
+  .chart-grid { grid-template-columns: 1fr; }
+  .chart-wide    { grid-column: 1; }
+  .chart-summary { grid-column: 1; grid-row: auto; }
+  .chart-wide .chart-canvas-wrap  { height: 200px; }
+  .chart-card:not(.chart-wide):not(.chart-summary) .chart-canvas-wrap { height: 180px; }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "aquasense",
+  "version": "1.0.0",
+  "description": "AquaSense — Smart Groundwater Monitoring for North Bangalore",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "seed": "cd backend && node seed/seedData.js",
+    "demo-user": "cd backend && node seed/createDemoUser.js",
+    "setup": "npm run seed && npm run demo-user",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install"
+  }
+}

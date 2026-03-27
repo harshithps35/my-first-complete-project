@@ -1,0 +1,86 @@
+.mapview-root {
+  flex: 1;
+  position: relative;
+  height: calc(100vh - 200px);
+}
+
+/* Override leaflet container background for dark mode */
+.mapview-root .leaflet-container {
+  border-radius: 0;
+  position: absolute;
+  inset: 0;
+}
+
+/* ─── Map Legend ─── */
+.map-legend {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1000;
+  min-width: 170px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.legend-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.legend-toggle { font-size: 10px; color: var(--text-muted); }
+
+.legend-body { padding: 4px 14px 14px; display: flex; flex-direction: column; gap: 12px; }
+
+.legend-section { display: flex; flex-direction: column; gap: 6px; }
+.legend-title { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 2px; }
+
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-secondary); }
+
+.legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-square {
+  width: 12px; height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ─── Popup Styles ─── */
+.map-popup { display: flex; flex-direction: column; gap: 8px; min-width: 200px; }
+
+.popup-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.popup-header strong { font-size: 13px; color: var(--text-primary); line-height: 1.3; }
+
+.popup-area { font-size: 12px; color: var(--text-muted); }
+
+.popup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid var(--border);
+}
+
+.popup-metric { display: flex; flex-direction: column; gap: 2px; }
+.pm-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.pm-value { font-size: 14px; font-weight: 700; color: var(--accent-blue); font-family: var(--font-display); }
+
+.popup-time { font-size: 11px; color: var(--text-muted); }
