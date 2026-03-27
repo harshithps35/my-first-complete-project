@@ -49,6 +49,5 @@ setInterval(async () => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 AquaSense Server running on http://localhost:${PORT}`);
-  console.log(`📡 API endpoints: /api/auth | /api/sensors | /api/zones | /api/predictions`);
-});
+  console.log(`🚀 AquaSense Server running on ${PORT}`);
+  console.log(`📡 API endpoints: /api/auth | /api/sensors | /api/zones | /api/predictions`);});
